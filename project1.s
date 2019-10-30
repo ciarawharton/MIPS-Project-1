@@ -32,3 +32,13 @@ li $v0, 1
 move $a0, $t0
 syscall
 
+.code
+# for each character of input
+# loop instruction
+    ischaracter: # label name
+        xor cx,cx # cx register = counter, setting to 0
+        nop
+        inc cx # incrementing counter
+        cmp cx,3 # compairing cx to the limit
+        jle ischaracter # loop while less or equal
+    loop ischaracter
