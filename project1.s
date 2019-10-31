@@ -2,19 +2,14 @@
 
 prompt: .asciiz "Input integers: " # getting user input for integers
 counter: .word 0 # counter for the loop
-input: .space 10 # for the user input
+input: .space 11 # for the user input
 inputSize: .word 10 # makes sure user can only write 10 integers
 
-# x = Howard ID
 # N = 26 + (X % 11), N(base) = 31
 # M = N - 10, M = 21
-# base 31
-
-# range =
-
 .text
 # gets rid of error message
-.globl main
+#.globl main
 main:
 # loading to registers
 li $v0, 4
@@ -58,7 +53,7 @@ syscall
 move $a0, $t0
 syscall
 
-secondLoop:
+secondLoop: # running through each number in string
     bgt $a1, 47 # greater than 0
     blt $a1, $t2, 58 # less than 10
 
