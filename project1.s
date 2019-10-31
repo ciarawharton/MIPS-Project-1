@@ -39,7 +39,7 @@ syscall
 move $t0, $v0
 # total sum register = 0
 li $s4, 0
-# s3 is the total sum register
+# s4 is the total sum register
 
 # beginning of loop
 loop:
@@ -51,18 +51,20 @@ loop:
     addi $t2, $t2, 1
 j loop
 
-
 end:
-    la $a0, input
+    la $a1, input
 syscall
 
-
-
-# printing the integers
-#li $v0, 1
 move $a0, $t0
 syscall
- 
+
+secondLoop:
+    bgt $a1, 47 # greater than 0
+    blt $a1, $t2, 58 # less than 10
+
+
+
+#97-117
 
 # program must exit afterwards
 
