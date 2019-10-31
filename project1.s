@@ -25,7 +25,9 @@ la $a0, input
 li $a1, 11
 syscall
 
-
+lw $t1, counter
+lw $t2, inputSize
+la $t0, input
 
 #
 li $v0, 10
@@ -33,10 +35,10 @@ syscall
 
 # store user integers into $t0
 move $t0, $v0
-
-lw $t1, iterator
-
+# beginning of loop
 loop:
+    bgt $t1, $t2, end
+    sll $t3, $t1
     
 
 
