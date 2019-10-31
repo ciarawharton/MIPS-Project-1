@@ -1,8 +1,10 @@
 .data
-    counter: .word 0 # counter for the loop
-    input: .space 10 # for the user input
-    inputSize: .word 10 # makes sure user can only write 10 integers
+
 prompt: .asciiz "Input integers: " # getting user input for integers
+counter: .word 0 # counter for the loop
+input: .space 10 # for the user input
+inputSize: .word 10 # makes sure user can only write 10 integers
+
 # x = Howard ID
 # N = 26 + (X % 11), N(base) = 31
 # M = N - 10, M = 21
@@ -17,7 +19,15 @@ li $v0, 4
 la $a0, prompt
 syscall
 
-# get user's integers up to 10 numbers?
+# user input as a string
+li $v0, 8
+la $a0, input
+li $a1, 11
+syscall
+
+
+
+#
 li $v0, 10
 syscall
 
