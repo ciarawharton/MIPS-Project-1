@@ -10,6 +10,8 @@ inputSize: .word 10 # makes sure user can only write 10 integers
 # M = N - 10, M = 21
 # base 31
 
+# range =
+
 .text
 # gets rid of error message
 .globl main
@@ -35,11 +37,25 @@ syscall
 
 # store user integers into $t0
 move $t0, $v0
+# total sum register = 0
+li $s4, 0
+# s3 is the total sum register
+
 # beginning of loop
 loop:
-    bgt $t1, $t2, end
-    sll $t3, $t1
-    
+    bgt $t2, $t3, end
+    sll $t4, $t2, 2 # counter x 4 store that into t3
+    addu $t4, $t4, $t1 # for the index of the array
+    lb $t7, 0($t4)
+    addu $s8, $s8, $t7 # for the register
+    addi $t2, $t2, 1
+j loop
+
+
+end:
+    la $a0, input
+syscall
+
 
 
 # printing the integers
