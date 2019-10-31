@@ -15,11 +15,11 @@ li $v0, 4
 la $a0, prompt
 syscall
 
-# get user's integers
+# get user's integers up to 10 numbers?
 li $v0, 10
 syscall
 
-# store integers into $t0
+# store user integers into $t0
 move $t0, $v0
 
 # displaying message
@@ -32,18 +32,26 @@ li $v0, 1
 move $a0, $t0
 syscall
 
-.code
-# for each character of input
-# loop instruction
-ischaracter: # label name/creating a function?
-   xor cx,cx # cx register = counter, setting to 0
-    nop
-    inc cx # incrementing counter
-    cmp cx,10 # comparing cx to the limit
-    jle ischaracter # loop while less or equal
-loop ischaracter
-
-# adding the numbers from user input
+#.code
+# loop instruction to add integers to an array
+loop:
+add $t2, $zero, $zero # index of string
+load:
+la $s0, array # load address of the array to s0
+la $t0, list # loading address of input
+sll $t3, $t2, 1 # skipping spaces
+sll $t4, $s1, 2
+addu $t0, $t0, $t3 # position of string
+addu $s0, $s0, $t4
+lbu $t1, 0($t0) # loading bytes of input to t1
+addiu $t1, $t1, -48 # converting characters to integer
+sb $t1, 0($s0) # storing bytes into array
+addi $t2, $t2, 1 # increment index of string by 1
+addi $s1, $s1, 1 # increment index of array by 1
+li $v0, 11 # printing input as integers
+#addi $a0, $zero, 0xA
+syscall
+ 
 
 # program must exit afterwards
 
