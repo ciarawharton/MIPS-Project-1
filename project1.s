@@ -46,11 +46,19 @@ addi $t4, $t4, 1
 lb $s3,($t4)
 j verify
 
-# for the lowercase characters
-blt $s3, 116 # for the letter u
+# uppercase character U
+uppercaseU:
+blt $s3, 84, counter
+sub $s3, $s3, 55
+add
+
+# for the lowercase character u
+lowercaseU:
+blt $s3, 116 # for the letter u (range)
 sub $s3, $s3,
 add $s4, $s4, $s3
 j counter
+
 
 #97-117
 
