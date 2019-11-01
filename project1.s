@@ -34,31 +34,32 @@ j verify
 
 # uppercase character U
 uppercaseU:
-bge $s3, 84, counter
-sub $s3, $s3, 65
-add $s4, $s4, $s3
+bge $s2, 85, counter
+sub $s2, $s2, 55
+add $s3, $s3, $s2
 j counter
 
 # for the lowercase character u
 lowercaseU:
-bge $s3, 65, counter # for the letter u
-sub $s3, $s3, 48
-add $s4, $s4, $s3
+bge $s2, 117, counter # for the letter u
+sub $s2, $s2, 87
+add $s3, $s3, $s2
 j counter
 
 numbers:
-bge $s3, 58, counter
-sub $s3, $s3, 55
-add $s4, $s4, $s3
+bge $s2, 48, counter
+sub $s2, $s2, 48
+add $s3, $s3, $s2
 j counter
 
-calling:
+output:
 li $v0, 4
 la $a0, enter
 syscall
 
+
 li $v0, 1
-move $a0, $s4
+move $a0, $s3
 syscall
 
 li $v0, 10
