@@ -31,6 +31,7 @@ move $t4, $a0
 lb $s3, ($t4)
 
 # check values
+verify:
 beq $t1, 10, print
 
 addi $t1, $t1, 1
@@ -39,16 +40,17 @@ blt $s3, 64 # uppercase (BLT = less than)
 blt $s3, 47 # for 0, BLT = less than
 
 # total sum register = 0
+# creating a function
+counter:
 addi $t4, $t4, 1
 lb $s3,($t4)
-j check
+j verify
 
 # for the lowercase characters
 blt $s3, 116 # for the letter u
 sub $s3, $s3,
-move $a0, $t0
-syscall
-
+add $s4, $s4, $s3
+j counter
 
 #97-117
 
