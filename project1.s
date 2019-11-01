@@ -38,13 +38,14 @@ blt $s3, 96 # lowercase (BLT = less than)
 blt $s3, 64 # uppercase (BLT = less than)
 blt $s3, 47 # for 0, BLT = less than
 
-blt $a1, $t2, 58 # less than 10
 # total sum register = 0
 addi $t4, $t4, 1
 lb $s3,($t4)
 j check
-#syscall
 
+# for the lowercase characters
+blt $s3, 116 # for the letter u
+sub $s3, $s3,
 move $a0, $t0
 syscall
 
